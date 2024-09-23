@@ -2,7 +2,7 @@ brain_gene <- list(
   "Oligodendrocytes" = c("Cldn11", "Cnp39","PDGFRA", "CSPG4"),
   "Oligodendrocyte progenitor cells" = c("Opc", "Pdgfr", "Olig2"),
   
-  "Microlia" = c("P2ry12", "C1qa", "Cx3cr1", "A2m"),
+  "Microlia" = c("P2ry12", "C1qa", "Cx3cr1", "A2m","Tmem119","Trem2"),
   "Astrocytes" = c("Scl6a11", "Ntsr2"),
   
   "Neurons" = c("Gad1","Gad2","Gja1","Slc17a7","Satb2","Lmo7","Pcp4","Pcdh8"),
@@ -35,7 +35,7 @@ immune_gene <- list(
   
 )
 
-micro_polar <- c("Nos2","Il1b","Tnf","Ccl3","Ccl2","Arg1","Ch    il3","Il10")
+micro_polar <- c("Nos2","Il1b","Tnf","Ccl3","Ccl2","Arg1","Chil3","Il10")
 micro_meta <- c("Hk2","Pkm","Pfkm","Ogdh","Atp5b")
 marker_genes <- list(
   "Microglia" = c("A2m","P2ry12","Itgam",
@@ -50,4 +50,4 @@ marker_genes <- list(
   "Granulo"=c("Lyz2","Fn1","Hp","S100a8"),
   "Macrophage"=c("Ifit3","Isg15","Cd74","H2-Ab1"),
   "NK"=c("Nkg7","AW112010","Klrk1","Prf1","Gzma"),
-  "Neuron" = c("Gad1","Gad2","Gja1",str_to_title(str_to_l( c("SLC17A7","SATB2","LMO7","PCP4","PCDH8")))))
+  "Neuron" = c("Gad1","Gad2","Gja1",str_to_title(str_to_lower( c("SLC17A7","SATB2","LMO7","PCP4","PCDH8")))))

@@ -22,7 +22,7 @@ for (i in 1:length(ds.dir)) {
   scRNAlist[[i]] <- CreateSeuratObject(counts=Read10X(data.dir = ds.dir[i]), 
                                        project=names(ds.dir)[i], min.cells=3, min.features = 200)
   # 给细胞barcode加个前缀，防止合并后barcode重名
-  scRNAlist[[i]] <- RenameCells(scRNAlist[[i]], add.cell.id = names(ds.dir)[i])   
+  # scRNAlist[[i]] <- RenameCells(scRNAlist[[i]], add.cell.id = names(ds.dir)[i])   
   # 计算线粒体基因比例
   if (T) {    
     scRNAlist[[i]][["percent.mt"]] <- PercentageFeatureSet(scRNAlist[[i]], pattern = "^mt-")   # Hm: MT
@@ -45,7 +45,7 @@ for (i in 1:length(ds.dir)) {
 # Merge multi-samples into one object
 scRNA <- merge(scRNAlist[[1]],scRNAlist[2:length(scRNAlist)])
 table(scRNA$orig.ident)
-
+head(scRNA)
 # Clean Up scRNAlist
 rm(scRNAlist); gc()
 
@@ -110,7 +110,7 @@ scRNA <- FindNeighbors(scRNA, reduction = "harmony", dims = 1:25) %>%
   FindClusters(resolution = seq(0.1, 1, by = 0.1))
 
 library(clustree)
-cl_tree <- clustree(scRNA)
+# cl_tree <- clustree(scRNA)
 ggsave("visual/clustree.pdf", width = 16, height = 9)
 
 Idents(scRNA) <- scRNA$RNA_snn_res.0.5

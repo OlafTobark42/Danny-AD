@@ -4,8 +4,8 @@ library(dplyr)
 library(ggplot2)
 
 # Calculate the proportion of each cell type in each group
-proportion_data <- seu@meta.data %>%
-  group_by(RNA_snn_res.0.2, group) %>%
+proportion_data <- microglia_cells@meta.data %>%
+  group_by(seurat_clusters, group) %>%
   summarise(count = n()) %>%
   ungroup() %>%
   group_by(group) %>%
@@ -17,11 +17,12 @@ library(dplyr)
 library(ggsci)  # 使用 ggsci 包中的 npg 配色
 
 # 过滤数据，仅保留 Control 和 AD + WT 两组
-filtered_data <- proportion_data %>%
-  filter(group %in% c("Control", "AD + WT"))
+filtered_data <- proportion_data
+# %>%
+#   filter(group %in% c("Control", "AD + WT"))
 
 # 绘制圆环图，使用 ggsci 的 npg 配色
-ggplot(filtered_data, aes(x = 2, y = proportion, fill = RNA_snn_res.0.2)) +
+micro_ratio <- ggplot(filtered_data, aes(x = 2, y = proportion, fill = seurat_clusters)) +
   geom_bar(stat = "identity", width = 1, color = "white") +  # 绘制条形图
   coord_polar(theta = "y") +  # 转换为极坐标
   facet_wrap(~ group) +  # 为每个 group 单独生成一个圆环图
@@ -32,13 +33,16 @@ ggplot(filtered_data, aes(x = 2, y = proportion, fill = RNA_snn_res.0.2)) +
     plot.title = element_text(hjust = 0.5),
     strip.text = element_text(size = 14)  # 调整分面标签的字体大小
   ) +
-  scale_fill_aaas() +  # 使用 npg 配色（对比鲜明）
+  # scale_fill_npg() +  # 使用 npg 配色（对比鲜明）
+  scale_fill_manual(values = micro_umap_pal) +  # 使用自定义配色方案
   geom_text(aes(label = scales::percent(proportion, accuracy = 0.1)), 
             position = position_stack(vjust = 0.5), size = 4, color = "black") +  # 在环形内显示百分比
   labs(
     fill = "Microglia Subtype",  # 图例标题
     title = "Proportion of Microglia Subtypes by Group"
   )
+micro_ratio
+ggsave("visual/micro_ratio.pdf",micro_ratio, width = 8, height = 6)
 
 # 批量配色 --------------------------------------------------------------------
 
@@ -117,11 +121,11 @@ ggsave(filename = "visual/micro_sub/d3_microglia_subtypes.pdf",
 # 亚群umap ------------------------------------------------------------------
 
 # 加载必要的库
-library(Seurat)
+library(microglia_cellsrat)
 library(ggsci)
 
 # 使用 DimPlot 绘制 UMAP，并应用 d3 配色
-umap_plot <- DimPlot(seu, pt.size = 1,
+umap_plot <- DimPlot(microglia_cells, pt.size = 1,
                      reduction = "umap", group.by = "RNA_snn_res.0.2") +
   scale_color_d3() +  # 使用 d3 配色
   labs(title = "UMAP of Microglia Subtypes") +

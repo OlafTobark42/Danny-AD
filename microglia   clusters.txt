@@ -1,0 +1,20 @@
+Homeostatic microglia（HM）
+Cx3cr1、Tmem119、P2ry12 、 Csf1r、Zfhx3、maf、Cacnb2
+
+Inflammatory microglia（IFAM）
+Ccl4 、Ccl3、Il1b、Zfp36、Lgals3、 Cst7、Atf3、Jun、Tnf、Il1α
+
+Interferon response microglia （IRM）
+Ifitm3、Rtp4、 Oasl2、Stat1、 Stat4、Ifit2、Irf7、 Oas1、 Plscr1、Ifit2、Ifit3、 Ifi204
+
+Antigen-presenting response microglia (ARM)
+H2-Aa、 H2-Ab1、H2-Eb1、 Cd74、Ciita、H2-D1、 H2-K1、Nlrc5
+
+Proliferative-region-associated microglia（PAM）
+Clec7a、Spp1、Gpnmb、Igf1、Igtax、Fabp5、Lgals3
+
+Myelination/demyelination-related microglia（MYEM）
+Lpl, Cst7, Igf1, Spp1, Fabp5, Itgax
+
+Disease-associated response microglia （DAM）
+Spp1、Gpnmb、Igf1、Clec7a、Lpl、Lgals3、Itgax、 Apoe、Tyrobp、Cd9、Cst7、Cd63、Fabp5
